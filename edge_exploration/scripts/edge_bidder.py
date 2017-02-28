@@ -89,9 +89,9 @@ class EdgeBider(object):
         x_slots = np.linspace(0.0, 24.0, (3*24))
         myd=self.bidder.available_tokens*norm.pdf(x_slots, 12, 4)
         now = datetime.datetime.now()
-        slot = int(now.hour*3)+(int(np.floor(now.minute/20.0))+1)
+        slot = (int(now.hour*3)+(int(np.floor(now.minute/20.0))+1))-1
         if slot >= len(myd):
-            slot = len(myd)-1
+            slot = 0
         tokens_to_use= np.ceil(myd[slot])
 
         total_entropy = sum(tskscr)
